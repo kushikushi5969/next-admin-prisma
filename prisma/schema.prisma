@@ -15,5 +15,18 @@ datasource db {
 
 model credit_card {
   id    Int @id @default(autoincrement())
+  name  String @db.VarChar(200)
   wp_id Int
+  review review[]
+}
+
+model review {
+  id             Int @id @default(autoincrement())
+  credit_card_id credit_card @relation(fields: [credit_id], references: [id])
+  credit_id      Int
+  job            String @db.VarChar(20)
+  age            String @db.VarChar(20)
+  sex            String @db.VarChar(20)
+  star           Decimal @db.Decimal(2, 1)
+  content        String @db.VarChar(200)
 }
